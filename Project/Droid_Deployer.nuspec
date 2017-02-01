@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>Droid_deployer</id>
-    <version>1.0.3</version>
+    <version>1.0.2</version>
     <title>Servodroid.deployer</title>
     <authors>Thibault MONTAUFRAY</authors>
     <owners>Servodroid</owners>

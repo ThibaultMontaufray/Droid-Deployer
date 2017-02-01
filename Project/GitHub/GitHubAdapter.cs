@@ -121,25 +121,39 @@ namespace Droid_deployer
         {
             _client = null;
         }
-        #endregion
-
-        #region Methods private
-        private Repository GetRepo(string repoName)
+        public IReadOnlyList<Repository> GetUserRepo()
         {
             if (_client != null && _isLoggedIn)
             {
                 string repoUser = string.IsNullOrEmpty(_repoUser) ? _user : _repoUser;
-                Task<IReadOnlyList<Octokit.Repository>> getRepoList = null;
+                Task<IReadOnlyList<Repository>> getRepoList = null;
                 Task.Run(() => getRepoList = _client.Repository.GetAllForUser(repoUser)).Wait();
 
-                if (getRepoList.Result != null && getRepoList.Result.Count > 0)
-                {
-                    var lstRepo = getRepoList.Result.Where(r => r.Name.Equals(repoName)).ToList();
-                    if (lstRepo != null && lstRepo.Count > 0) return lstRepo[0];
-                }
+                return getRepoList.Result;
             }
             return null;
         }
+        public List<Repository> GetRepos(string repoName, string filter)
+        {
+            IReadOnlyList<Repository> userRepo = GetUserRepo();
+            List<Repository> repos = new List<Repository>();
+            
+            if (userRepo != null) { return userRepo.Where(r => r.Name.Contains(filter)).ToList(); }
+            return repos;
+        }
+        public Repository GetRepo(string repoName)
+        {
+            IReadOnlyList<Repository> userRepo = GetUserRepo();
+            if (userRepo != null && userRepo.Count > 0)
+            {
+                var lstRepo = userRepo.Where(r => r.Name.Equals(repoName)).ToList();
+                if (lstRepo != null && lstRepo.Count > 0) return lstRepo[0];
+            }
+            return null;
+        }
+        #endregion
+
+        #region Methods private
         #endregion
     }
 }

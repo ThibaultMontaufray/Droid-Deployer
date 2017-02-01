@@ -22,6 +22,7 @@ namespace Droid_deployer
 
         private static string _user;
         private static string _password;
+        private static GitHubAdapter _gha;
         #endregion
 
         #region Properties
@@ -31,6 +32,7 @@ namespace Droid_deployer
         static CreateGitHubIssue()
         {
             InitializeComponent();
+            Init();
         }
         #endregion
 
@@ -171,13 +173,18 @@ namespace Droid_deployer
             _form.Controls.Add(_comboBoxType);
             _form.Controls.Add(_textBoxTitle);
             _form.Controls.Add(_labelTitle);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             _form.Name = "CreateGitHubIssue";
             _form.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             _form.Text = "Report an issue";
             _form.ResumeLayout(false);
             _form.PerformLayout();
 
+        }
+        private static void Init()
+        {
+            _gha = new GitHubAdapter(_user, _password);
+            _gha.
         }
         #endregion
 
@@ -188,9 +195,8 @@ namespace Droid_deployer
         }
         private static void _buttonReport_Click(object sender, EventArgs e)
         {
-            GitHubAdapter gha = new GitHubAdapter(_user, _password);
-            gha.RepoUser = "ThibaultMontaufray";
-            gha.PublishIssue(string.Format("Droid-{0}", _comboboxRepo.Text), _textBoxTitle.Text, _textBoxDescription.Text);
+            _gha.RepoUser = "ThibaultMontaufray";
+            _gha.PublishIssue(string.Format("Droid-{0}", _comboboxRepo.Text), _textBoxTitle.Text, _textBoxDescription.Text);
             _form.Close();
         }
         private static void _textBoxDescription_Enter(object sender, EventArgs e)

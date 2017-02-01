@@ -68,5 +68,5 @@ D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\RestSharp.xml
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.pdb
-D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.exe
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.pdb
+D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.dll

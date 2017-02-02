@@ -1,4 +1,6 @@
-﻿using Octokit;
+﻿// Log 00 - 02
+
+using Octokit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,7 +95,7 @@ namespace Droid_deployer
                 }
             }
         }
-        public void PublishIssue(string repoName, string title, string body)
+        public bool PublishIssue(string repoName, string title, string body)
         {
             try
             {
@@ -109,6 +111,7 @@ namespace Droid_deployer
                         NewIssue issue = new NewIssue(title);
                         issue.Body = body;
                         _client.Issue.Create(repo.Id, issue);
+                        return true;
                     }
                 }
             }
@@ -116,6 +119,7 @@ namespace Droid_deployer
             {
                 Console.WriteLine(exp.Message);
             }
+            return false;
         }
         public void LogOff()
         {
@@ -123,31 +127,51 @@ namespace Droid_deployer
         }
         public IReadOnlyList<Repository> GetUserRepo()
         {
-            if (_client != null && _isLoggedIn)
+            try
             {
-                string repoUser = string.IsNullOrEmpty(_repoUser) ? _user : _repoUser;
-                Task<IReadOnlyList<Repository>> getRepoList = null;
-                Task.Run(() => getRepoList = _client.Repository.GetAllForUser(repoUser)).Wait();
+                if (_client != null && _isLoggedIn)
+                {
+                    string repoUser = string.IsNullOrEmpty(_repoUser) ? _user : _repoUser;
+                    Task<IReadOnlyList<Octokit.Repository>> getRepoList = null;
+                    Task.Run(() => getRepoList = _client.Repository.GetAllForUser(repoUser)).Wait();
 
-                return getRepoList.Result;
+                    return getRepoList.Result;
+                }
+            }
+            catch (Exception exp)
+            {
+                Tools4Libraries.Log.Write("[ ERR 0000 ] Error getting user repository : " + exp.Message);
             }
             return null;
         }
-        public List<Repository> GetRepos(string repoName, string filter)
+        public List<Repository> GetRepos(string filter)
         {
-            IReadOnlyList<Repository> userRepo = GetUserRepo();
             List<Repository> repos = new List<Repository>();
-            
-            if (userRepo != null) { return userRepo.Where(r => r.Name.Contains(filter)).ToList(); }
+            try
+            {
+                IReadOnlyList<Repository> userRepo = GetUserRepo();
+                if (userRepo != null) { return userRepo.Where(r => r.Name.Contains(filter)).ToList(); }
+            }
+            catch (Exception exp)
+            {
+                Tools4Libraries.Log.Write("[ ERR 0001 ] Error getting user repositories : " + exp.Message);
+            }
             return repos;
         }
         public Repository GetRepo(string repoName)
         {
-            IReadOnlyList<Repository> userRepo = GetUserRepo();
-            if (userRepo != null && userRepo.Count > 0)
+            try
             {
-                var lstRepo = userRepo.Where(r => r.Name.Equals(repoName)).ToList();
-                if (lstRepo != null && lstRepo.Count > 0) return lstRepo[0];
+                IReadOnlyList<Repository> userRepo = GetUserRepo();
+                if (userRepo != null && userRepo.Count > 0)
+                {
+                    var lstRepo = userRepo.Where(r => r.Name.Equals(repoName)).ToList();
+                    if (lstRepo != null && lstRepo.Count > 0) return lstRepo[0];
+                }
+            }
+            catch (Exception exp)
+            {
+                Tools4Libraries.Log.Write("[ ERR 0002 ] Error getting user particular repository : " + exp.Message);
             }
             return null;
         }

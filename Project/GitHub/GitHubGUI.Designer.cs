@@ -28,52 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            panel1 = new System.Windows.Forms.Panel();
-            _gitHubUserDetail = new Droid_deployer.GitHubUserDetail();
-            _gitHubLogger = new Droid_deployer.GitHubLogger();
-            SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this._gitHubUserDetail = new Droid_deployer.GitHubUserDetail();
+            this._gitHubLogger = new Droid_deployer.GitHubLogger();
+            this.SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            panel1.Location = new System.Drawing.Point(12, 82);
-            panel1.Name = "panel1";
-            panel1.Size = new System.Drawing.Size(579, 252);
-            panel1.TabIndex = 1;
+            this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(12, 82);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(579, 252);
+            this.panel1.TabIndex = 1;
             // 
             // _gitHubUserDetail
             // 
-            _gitHubUserDetail.GitHubAdapter = null;
-            _gitHubUserDetail.Location = new System.Drawing.Point(12, 12);
-            _gitHubUserDetail.Name = "_gitHubUserDetail";
-            _gitHubUserDetail.Size = new System.Drawing.Size(579, 64);
-            _gitHubUserDetail.TabIndex = 0;
-            _gitHubUserDetail.Visible = false;
+            this._gitHubUserDetail.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this._gitHubUserDetail.GitHubAdapter = null;
+            this._gitHubUserDetail.Location = new System.Drawing.Point(12, 12);
+            this._gitHubUserDetail.Name = "_gitHubUserDetail";
+            this._gitHubUserDetail.Size = new System.Drawing.Size(579, 64);
+            this._gitHubUserDetail.TabIndex = 0;
+            this._gitHubUserDetail.Visible = false;
             // 
             // _gitHubLogger
             // 
-            _gitHubLogger.GitHubAdapter = null;
-            _gitHubLogger.Location = new System.Drawing.Point(12, 12);
-            _gitHubLogger.Name = "_gitHubLogger";
-            _gitHubLogger.Size = new System.Drawing.Size(579, 64);
-            _gitHubLogger.TabIndex = 0;
+            this._gitHubLogger.GitHubAdapter = null;
+            this._gitHubLogger.Location = new System.Drawing.Point(12, 12);
+            this._gitHubLogger.Name = "_gitHubLogger";
+            this._gitHubLogger.Size = new System.Drawing.Size(579, 64);
+            this._gitHubLogger.TabIndex = 0;
             // 
             // GitHubGUI
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(599, 346);
-            Controls.Add(_gitHubUserDetail);
-            Controls.Add(panel1);
-            Controls.Add(_gitHubLogger);
-            FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            Name = "GitHubGUI";
-            Text = "GitHub ";
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(599, 346);
+            this.Controls.Add(this._gitHubUserDetail);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this._gitHubLogger);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "GitHubGUI";
+            this.Text = "GitHub ";
+            this.ResumeLayout(false);
 
         }
 

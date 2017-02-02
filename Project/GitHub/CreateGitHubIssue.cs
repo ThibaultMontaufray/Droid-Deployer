@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Linq;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Droid_deployer
 {
@@ -8,6 +11,7 @@ namespace Droid_deployer
     {
         #region Attribute
         private static System.ComponentModel.IContainer components = null;
+        private const string OFFLINE_ISSUES_FILE = "IssueToPost.xml";
 
         private static Form _form;
         private static Label _labelTitle;
@@ -23,6 +27,7 @@ namespace Droid_deployer
         private static string _user;
         private static string _password;
         private static GitHubAdapter _gha;
+        private static List<string> _repositories;
         #endregion
 
         #region Properties
@@ -31,16 +36,18 @@ namespace Droid_deployer
         #region Constructor
         static CreateGitHubIssue()
         {
+            Tools4Libraries.Log.ApplicationAppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Servodroid\Droid-Deployer";
             InitializeComponent();
-            Init();
         }
         #endregion
 
         #region Methods public
-        public static void ShowDialog(string user, string password)
+        public static void ShowDialog(string user, string password, List<string> repositories = null)
         {
             _user = user;
             _password = password;
+            _repositories = repositories;
+            LoadRepo();
             _form.ShowDialog();
         }
         public static void Dispose()
@@ -83,6 +90,7 @@ namespace Droid_deployer
             _textBoxTitle.Name = "_textBoxTitle";
             _textBoxTitle.Size = new System.Drawing.Size(352, 20);
             _textBoxTitle.TabIndex = 1;
+            _textBoxTitle.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // _comboBoxType
             // 
@@ -97,18 +105,18 @@ namespace Droid_deployer
             _comboBoxType.Name = "_comboBoxType";
             _comboBoxType.Size = new System.Drawing.Size(287, 21);
             _comboBoxType.TabIndex = 2;
+            _comboBoxType.DropDownStyle = ComboBoxStyle.DropDownList;
+            _comboBoxType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // comboBox1
             // 
             _comboboxRepo.FormattingEnabled = true;
-            _comboboxRepo.Items.AddRange(new object[] {
-            "Autre",
-            "Explorer",
-            "Video"});
             _comboboxRepo.Location = new System.Drawing.Point(139, 65);
             _comboboxRepo.Name = "comboBox1";
             _comboboxRepo.Size = new System.Drawing.Size(287, 21);
             _comboboxRepo.TabIndex = 3;
+            _comboboxRepo.DropDownStyle = ComboBoxStyle.DropDownList;
+            _comboboxRepo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top |System.Windows.Forms.AnchorStyles.Left) | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // _labelType
             // 
@@ -129,6 +137,9 @@ namespace Droid_deployer
             _textBoxDescription.TabIndex = 5;
             _textBoxDescription.Text = "Description";
             _textBoxDescription.Enter += new System.EventHandler(_textBoxDescription_Enter);
+            _textBoxDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // _buttonReport
             // 
@@ -139,6 +150,7 @@ namespace Droid_deployer
             _buttonReport.Text = "Send report";
             _buttonReport.UseVisualStyleBackColor = true;
             _buttonReport.Click += new System.EventHandler(_buttonReport_Click);
+            _buttonReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // _buttonCancel
             // 
@@ -149,6 +161,7 @@ namespace Droid_deployer
             _buttonCancel.Text = "Cancel";
             _buttonCancel.UseVisualStyleBackColor = true;
             _buttonCancel.Click += new System.EventHandler(_buttonCancel_Click);
+            _buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // _labelModule
             // 
@@ -173,7 +186,7 @@ namespace Droid_deployer
             _form.Controls.Add(_comboBoxType);
             _form.Controls.Add(_textBoxTitle);
             _form.Controls.Add(_labelTitle);
-            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            _form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             _form.Name = "CreateGitHubIssue";
             _form.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             _form.Text = "Report an issue";
@@ -181,10 +194,62 @@ namespace Droid_deployer
             _form.PerformLayout();
 
         }
-        private static void Init()
+        private static void LoadRepo()
         {
             _gha = new GitHubAdapter(_user, _password);
-            _gha.
+            _gha.RepoUser = "ThibaultMontaufray";
+            var repos = _gha.GetRepos("Droid-");
+            _comboboxRepo.Items.Add("Autre");
+            foreach (var item in repos.OrderBy(r => r.Name).ToList())
+            {
+                _comboboxRepo.Items.Add(item.Name.Replace("Droid-", string.Empty));
+            }
+            if (_comboboxRepo.Items.Count <= 1 && _repositories != null)
+            {
+                _repositories.Sort();
+                foreach (var item in _repositories)
+                {
+                    _comboboxRepo.Items.Add(item.Replace("Droid-", string.Empty));
+                }
+            }
+            _comboboxRepo.SelectedIndex = 0;
+            _comboBoxType.SelectedIndex = 0;
+        }
+        private static void SaveIssue()
+        {
+            string text = string.Format("<issue title=\"{0}\" type=\"{1}\" repository=\"{2}\" description=\"{3}\" />", _textBoxTitle.Text, _comboBoxType.Text, _comboboxRepo.Text, _textBoxDescription.Text);
+            Tools4Libraries.Log.Happen(OFFLINE_ISSUES_FILE, text);
+        }
+        private static void ProcessOldIssues()
+        {
+            string title;
+            string description;
+            string type;
+            string repository;
+            string text = Tools4Libraries.Log.GetFile(OFFLINE_ISSUES_FILE);
+            foreach (string row in text.Split('\n'))
+            {
+                try
+                {
+                    if (!string.IsNullOrEmpty(row))
+                    { 
+                        title = Regex.Split(row, "title=\"")[1].Split('"')[0];
+                        description = Regex.Split(row, "description=\"")[1].Split('"')[0];
+                        type = Regex.Split(row, "type=\"")[1].Split('"')[0];
+                        repository = Regex.Split(row, "repository=\"")[1].Split('"')[0];
+
+                        if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(repository)) continue;
+
+                        title = string.Format("[{0}] {1}", type, title);
+                        _gha.PublishIssue(string.Format("Droid-{0}", repository), title, description);
+                    }
+                }
+                finally
+                {
+
+                }
+            }
+            Tools4Libraries.Log.Clean(OFFLINE_ISSUES_FILE);
         }
         #endregion
 
@@ -195,8 +260,18 @@ namespace Droid_deployer
         }
         private static void _buttonReport_Click(object sender, EventArgs e)
         {
+            string title = string.Format("[{0}] {1}", _comboBoxType.Text, _textBoxTitle.Text);
+
             _gha.RepoUser = "ThibaultMontaufray";
-            _gha.PublishIssue(string.Format("Droid-{0}", _comboboxRepo.Text), _textBoxTitle.Text, _textBoxDescription.Text);
+            bool published = _gha.PublishIssue(string.Format("Droid-{0}", _comboboxRepo.Text), title, _textBoxDescription.Text);
+            if (!published)
+            {
+                SaveIssue();
+            }
+            else
+            {
+                ProcessOldIssues();
+            }
             _form.Close();
         }
         private static void _textBoxDescription_Enter(object sender, EventArgs e)

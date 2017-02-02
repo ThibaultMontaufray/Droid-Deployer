@@ -58,6 +58,7 @@ D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Newtonsoft.Json.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Octokit.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Atlassian.Jira.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\RestSharp.dll
+D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.pdb
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\nunit.framework.xml
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Newtonsoft.Json.xml
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Octokit.pdb
@@ -68,5 +69,4 @@ D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\RestSharp.xml
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.pdb
-D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.pdb
-D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.dll
+D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.exe

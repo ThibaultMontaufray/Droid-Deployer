@@ -127,7 +127,7 @@ namespace Droid_deployer
             }
             catch (Exception exp12000)
             {
-                Log.write("[ ERR : 12000 ] Cannot load the virtual machine.\n" + exp12000.Message);
+                Log.Write("[ ERR : 12000 ] Cannot load the virtual machine.\n" + exp12000.Message);
                 return null;
             }
         }

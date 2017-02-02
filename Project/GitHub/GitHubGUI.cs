@@ -19,6 +19,7 @@ namespace Droid_deployer
         #region Constructor
         public GitHubGUI()
         {
+            CreateGitHubIssue.ShowDialog("ThibaultMontaufray", "Androi7#", new System.Collections.Generic.List<string>() { "Explorer", "Video", "Images", "Audio", "Communication", "Deployer", "Calendar", "Litterature", "Weather" });
             InitializeComponent();
             Init();
         }

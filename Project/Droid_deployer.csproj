@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6827572C-022E-4C94-8E6C-4F4FC7AEAB18}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Droid_deployer</RootNamespace>
     <AssemblyName>Droid_deployer</AssemblyName>
@@ -61,10 +61,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Tools4Libraries, Version=1.0.5976.11865, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Tools4Libraries.1.0.4\lib\4.0\Tools4Libraries.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Docker\Controler\Command.cs" />
@@ -163,6 +159,12 @@
     <Folder Include="Jenkins\" />
     <Folder Include="Sonar\" />
     <Folder Include="TeamCity\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Tools4Libraries\Tools4Libraries.csproj">
+      <Project>{aad2b1be-9b2d-455d-8dd4-64e4e84dd985}</Project>
+      <Name>Tools4Libraries</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

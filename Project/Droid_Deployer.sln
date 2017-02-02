@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Droid_Deployer", "Droid_Dep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{0AF13185-9976-437D-AEBE-E4B9E5D20DC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tools4Libraries", "..\..\Tools4Libraries\Tools4Libraries.csproj", "{AAD2B1BE-9B2D-455D-8DD4-64E4E84DD985}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,12 +30,6 @@ Global
 		{0AF13185-9976-437D-AEBE-E4B9E5D20DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0AF13185-9976-437D-AEBE-E4B9E5D20DC5}.Release|x86.ActiveCfg = Release|Any CPU
 		{0AF13185-9976-437D-AEBE-E4B9E5D20DC5}.Release|x86.Build.0 = Release|Any CPU
-		{AAD2B1BE-9B2D-455D-8DD4-64E4E84DD985}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{AAD2B1BE-9B2D-455D-8DD4-64E4E84DD985}.Debug|x86.ActiveCfg = Debug|x86
-		{AAD2B1BE-9B2D-455D-8DD4-64E4E84DD985}.Debug|x86.Build.0 = Debug|x86
-		{AAD2B1BE-9B2D-455D-8DD4-64E4E84DD985}.Release|Any CPU.ActiveCfg = Release|x86
-		{AAD2B1BE-9B2D-455D-8DD4-64E4E84DD985}.Release|x86.ActiveCfg = Release|x86
-		{AAD2B1BE-9B2D-455D-8DD4-64E4E84DD985}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

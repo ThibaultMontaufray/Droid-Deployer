@@ -12,12 +12,15 @@ D:\Github\Droid-Deployer\Project\lib\4.0\Newtonsoft.Json.xml
 D:\Github\Droid-Deployer\Project\lib\4.0\Octokit.pdb
 D:\Github\Droid-Deployer\Project\lib\4.0\Octokit.xml
 D:\Github\Droid-Deployer\Project\lib\4.0\RestSharp.xml
+D:\Github\Droid-Deployer\Project\lib\4.5.1\Droid_deployer.dll.config
+D:\Github\Droid-Deployer\Project\lib\4.5.1\Droid_deployer.dll
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Droid_deployer.pdb
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Atlassian.Jira.dll
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Newtonsoft.Json.dll
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Octokit.dll
 D:\Github\Droid-Deployer\Project\lib\4.5.1\RestSharp.dll
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Tools4Libraries.dll
+D:\Github\Droid-Deployer\Project\lib\4.5.1\Tools4Libraries.Slider.dll
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Atlassian.Jira.pdb
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Atlassian.Jira.xml
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Newtonsoft.Json.xml
@@ -32,8 +35,5 @@ D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.Properties.Resources.r
 D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.DisplayDeployerPreview.resources
 D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.DockerManagerView.resources
 D:\Github\Droid-Deployer\Project\obj\Debug\Droid_Deployer.csproj.GenerateResource.Cache
+D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.dll
 D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.pdb
-D:\Github\Droid-Deployer\Project\obj\Debug\Droid_Deployer.csprojResolveAssemblyReference.cache
-D:\Github\Droid-Deployer\Project\lib\4.5.1\Droid_deployer.exe.config
-D:\Github\Droid-Deployer\Project\lib\4.5.1\Droid_deployer.exe
-D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.exe

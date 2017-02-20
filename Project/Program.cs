@@ -16,7 +16,7 @@ namespace Droid_deployer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new DisplayDeployerPreview());
-            Application.Run(new GitHubGUI());
+            Application.Run(new Syncany.SyncanyView());
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Droid_deployer
             string[] commands = new string[3];
             commands[0] = root.Replace("\\" , string.Empty);
             commands[1] = "cd " + cloudOriginalFilesPath;
-            commands[2] = string.Format("sy -d init --plugin={0} --plugin-option=path=\"{1}\" -o username='{2}' -o password='{3}' --no-encryption --no-compression", cloudType, cloudConfigFilesPath, user, passwword);
+            commands[2] = string.Format("sy -d init --plugin={0} --plugin-option=path=\"{1}\" -o username='{2}' -o password='{3}' --no-encryption --no-compression --add-daemon", cloudType, cloudConfigFilesPath, user, passwword);
             ConsoleLauncher.ExecuteCommand(commands);
         }
         /// <summary>
@@ -59,22 +59,34 @@ namespace Droid_deployer
             string[] commands = new string[3];
             commands[0] = root.Replace("\\", string.Empty);
             commands[1] = "cd " + repoToAssociate;
-            commands[2] = string.Format("sy connect --plugin={0} --plugin-option=path={1}", typeConnection, cloudConfigPath);
+            commands[2] = string.Format("sy connect --plugin={0} --plugin-option=path={1} --add-daemon", typeConnection, cloudConfigPath);
             ConsoleLauncher.ExecuteCommand(commands);
         }
         /// <summary>
         /// detects local changes and uploads them to the repository
         /// </summary>
-        public static void Up()
+        public static void Up(string workingDirectory)
         {
-            ConsoleLauncher.ExecuteCommand("sy up");
+            string root = Path.GetPathRoot(workingDirectory);
+
+            string[] commands = new string[3];
+            commands[0] = root.Replace("\\", string.Empty);
+            commands[1] = "cd " + workingDirectory;
+            commands[2] = "sy up";
+            ConsoleLauncher.ExecuteCommand(commands);
         }
         /// <summary>
         /// downloads changes by other people and apply them to your local machine
         /// </summary>
-        public static void Down()
+        public static void Down(string workingDirectory)
         {
-            ConsoleLauncher.ExecuteCommand("sy down");
+            string root = Path.GetPathRoot(workingDirectory);
+
+            string[] commands = new string[3];
+            commands[0] = root.Replace("\\", string.Empty);
+            commands[1] = "cd " + workingDirectory;
+            commands[2] = "sy down";
+            ConsoleLauncher.ExecuteCommand(commands);
         }
         /// <summary>
         /// starts background daemon to automatically sync your files

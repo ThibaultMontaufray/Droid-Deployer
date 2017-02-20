@@ -9,6 +9,7 @@ namespace Droid_deployer
         private List<string> _cloudRepositories;
         private string _directoryOriginal;
         private string _directoryToAssociate;
+        private string _workingDirectory;
 
         private string _login;
         private string _password;
@@ -51,6 +52,11 @@ namespace Droid_deployer
             get { return _password; }
             set { _password = value; }
         }
+        public string WorkingDirectory
+        {
+            get { return _workingDirectory; }
+            set { _workingDirectory = value; }
+        }
         #endregion
 
         #region Constructor
@@ -91,6 +97,7 @@ namespace Droid_deployer
             { 
                 SyncanyAdapter.PluginInstall("sftp");
                 SyncanyAdapter.Init(_cloudConfigPath, _directoryOriginal, _login, _password, _cloudConnectionType);
+                Daemon.AddWatch(_directoryOriginal);
             }
         }
         private void LaunchAssociateDirectory()
@@ -99,6 +106,7 @@ namespace Droid_deployer
             {
                 SyncanyAdapter.Connect(_cloudConfigPath, _directoryToAssociate, _cloudConnectionType);
                 _cloudRepositories.Add(_directoryToAssociate);
+                Daemon.AddWatch(_directoryToAssociate);
             }
         }
         #endregion

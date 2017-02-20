@@ -37,5 +37,6 @@ D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.pdb
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Droid_deployer.exe.config
 D:\Github\Droid-Deployer\Project\lib\4.5.1\Droid_deployer.exe
 D:\Github\Droid-Deployer\Project\obj\Debug\Droid_Deployer.csprojResolveAssemblyReference.cache
-D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.Syncany.SyncanyView.resources
 D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.exe
+D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.DemoSyncany.resources
+D:\Github\Droid-Deployer\Project\obj\Debug\Droid_deployer.Syncany.SyncanyAdaptaterView.resources

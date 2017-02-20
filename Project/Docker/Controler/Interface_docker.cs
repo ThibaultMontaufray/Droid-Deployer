@@ -1,6 +1,6 @@
 ﻿namespace Droid_deployer
 {
-    public class Interface_deployer
+    public class Interface_docker
     {
         #region Attribute
         private Boot2Docker _docker;
@@ -15,7 +15,7 @@
         #endregion
 
         #region Constructor
-        public Interface_deployer()
+        public Interface_docker()
         {
             _docker = new Boot2Docker();
         }

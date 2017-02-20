@@ -36,25 +36,31 @@ namespace Droid_deployer
         #endregion
 
         #region Methods public
-        public static void InstallFromScratch()
-        {
-            PluginInstall("sftp");
-            Init();
-        }
-
         /// <summary>
         /// Creates a new repository using any plugin and generates a syncany://link
         /// </summary>
-		public static void Init()
+		public static void Init(string cloudConfigFilesPath, string cloudOriginalFilesPath, string user, string passwword, string cloudType)
         {
-            ConsoleLauncher.ExecuteCommand("sy init");
+            string root = Path.GetPathRoot(cloudOriginalFilesPath);
+
+            string[] commands = new string[3];
+            commands[0] = root.Replace("\\" , string.Empty);
+            commands[1] = "cd " + cloudOriginalFilesPath;
+            commands[2] = string.Format("sy -d init --plugin={0} --plugin-option=path=\"{1}\" -o username='{2}' -o password='{3}' --no-encryption --no-compression", cloudType, cloudConfigFilesPath, user, passwword);
+            ConsoleLauncher.ExecuteCommand(commands);
         }
         /// <summary>
         /// connects to an existing repository using a syncany://-link
         /// </summary>
-		public static void Connect(string repoName)
+		public static void Connect(string cloudConfigPath, string repoToAssociate, string typeConnection)
         {
-            ConsoleLauncher.ExecuteCommand("sy connect syncanay://strorage/1/cby");
+            string root = Path.GetPathRoot(repoToAssociate);
+
+            string[] commands = new string[3];
+            commands[0] = root.Replace("\\", string.Empty);
+            commands[1] = "cd " + repoToAssociate;
+            commands[2] = string.Format("sy connect --plugin={0} --plugin-option=path={1}", typeConnection, cloudConfigPath);
+            ConsoleLauncher.ExecuteCommand(commands);
         }
         /// <summary>
         /// detects local changes and uploads them to the repository

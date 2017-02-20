@@ -1,6 +1,6 @@
 ﻿namespace Droid_deployer.Syncany
 {
-    partial class SyncanyView
+    partial class SyncanyAdaptaterView
     {
         /// <summary>
         /// Required designer variable.
@@ -45,6 +45,7 @@
             this.labelDaemonPID = new System.Windows.Forms.Label();
             this.buttonDaemonStart = new System.Windows.Forms.Button();
             this.buttonDaemonStop = new System.Windows.Forms.Button();
+            this.textBoxRepoPath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewPlugins)).BeginInit();
             this.SuspendLayout();
             // 
@@ -162,7 +163,7 @@
             // 
             // buttonDaemon
             // 
-            this.buttonDaemon.Location = new System.Drawing.Point(387, 12);
+            this.buttonDaemon.Location = new System.Drawing.Point(543, 70);
             this.buttonDaemon.Name = "buttonDaemon";
             this.buttonDaemon.Size = new System.Drawing.Size(150, 23);
             this.buttonDaemon.TabIndex = 12;
@@ -173,7 +174,7 @@
             // labelDaemonStatus
             // 
             this.labelDaemonStatus.AutoSize = true;
-            this.labelDaemonStatus.Location = new System.Drawing.Point(543, 17);
+            this.labelDaemonStatus.Location = new System.Drawing.Point(731, 60);
             this.labelDaemonStatus.Name = "labelDaemonStatus";
             this.labelDaemonStatus.Size = new System.Drawing.Size(87, 13);
             this.labelDaemonStatus.TabIndex = 13;
@@ -182,7 +183,7 @@
             // labelDaemonPID
             // 
             this.labelDaemonPID.AutoSize = true;
-            this.labelDaemonPID.Location = new System.Drawing.Point(543, 46);
+            this.labelDaemonPID.Location = new System.Drawing.Point(731, 31);
             this.labelDaemonPID.Name = "labelDaemonPID";
             this.labelDaemonPID.Size = new System.Drawing.Size(77, 13);
             this.labelDaemonPID.TabIndex = 14;
@@ -190,7 +191,7 @@
             // 
             // buttonDaemonStart
             // 
-            this.buttonDaemonStart.Location = new System.Drawing.Point(799, 12);
+            this.buttonDaemonStart.Location = new System.Drawing.Point(543, 12);
             this.buttonDaemonStart.Name = "buttonDaemonStart";
             this.buttonDaemonStart.Size = new System.Drawing.Size(150, 23);
             this.buttonDaemonStart.TabIndex = 15;
@@ -200,7 +201,7 @@
             // 
             // buttonDaemonStop
             // 
-            this.buttonDaemonStop.Location = new System.Drawing.Point(799, 41);
+            this.buttonDaemonStop.Location = new System.Drawing.Point(543, 41);
             this.buttonDaemonStop.Name = "buttonDaemonStop";
             this.buttonDaemonStop.Size = new System.Drawing.Size(150, 23);
             this.buttonDaemonStop.TabIndex = 16;
@@ -208,11 +209,19 @@
             this.buttonDaemonStop.UseVisualStyleBackColor = true;
             this.buttonDaemonStop.Click += new System.EventHandler(this.buttonDaemonStop_Click);
             // 
+            // textBoxRepoPath
+            // 
+            this.textBoxRepoPath.Location = new System.Drawing.Point(168, 14);
+            this.textBoxRepoPath.Name = "textBoxRepoPath";
+            this.textBoxRepoPath.Size = new System.Drawing.Size(369, 20);
+            this.textBoxRepoPath.TabIndex = 17;
+            // 
             // SyncanyView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1185, 217);
+            this.Controls.Add(this.textBoxRepoPath);
             this.Controls.Add(this.buttonDaemonStop);
             this.Controls.Add(this.buttonDaemonStart);
             this.Controls.Add(this.labelDaemonPID);
@@ -258,5 +267,6 @@
         private System.Windows.Forms.Label labelDaemonPID;
         private System.Windows.Forms.Button buttonDaemonStart;
         private System.Windows.Forms.Button buttonDaemonStop;
+        private System.Windows.Forms.TextBox textBoxRepoPath;
     }
 }

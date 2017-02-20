@@ -35,6 +35,38 @@ namespace Droid_deployer
             }
             return result;
         }
+        public static string ExecuteCommand(string[] cmd)
+        {
+            string commandArg = string.Empty;
+            foreach (string cmdArg in cmd)
+            {
+                if (!string.IsNullOrEmpty(commandArg)) { commandArg += " && "; }
+                commandArg += cmdArg;
+            }
+
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = @"C:\Windows\System32\cmd.exe";
+            psi.UseShellExecute = false;
+            psi.Verb = "runas";
+            psi.Arguments = "/c " + commandArg;
+            psi.RedirectStandardOutput = true;
+            psi.CreateNoWindow = true;
+
+            Process process = new Process();
+            process.StartInfo = psi;
+            process.OutputDataReceived += process_OutputDataReceived;
+            process.ErrorDataReceived += process_ErrorDataReceived;
+            process.Start();
+
+            process.WaitForExit(300000); // max 5 min to execute
+
+            string result = string.Empty;
+            using (StreamReader reader = process.StandardOutput)
+            {
+                result = reader.ReadToEnd();
+            }
+            return result;
+        }
         #endregion
 
         #region Methods private

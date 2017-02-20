@@ -1,0 +1,7 @@
+<config>
+   <machineName>OUzLRFEACrjPUlvSBIYr</machineName>
+   <displayName>amost</displayName>
+   <connection class="org.syncany.plugins.local.LocalTransferSettings" type="local">
+      <path>D:\SyncanyRepo\RepoClient</path>
+   </connection>
+</config>

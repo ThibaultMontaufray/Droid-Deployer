@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6827572C-022E-4C94-8E6C-4F4FC7AEAB18}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Droid_deployer</RootNamespace>
     <AssemblyName>Droid_deployer</AssemblyName>
@@ -133,6 +133,12 @@
     <Compile Include="Syncany\Controler\SyncanyAdapter.cs" />
     <Compile Include="Syncany\Model\Plugin.cs" />
     <Compile Include="Syncany\Model\Watch.cs" />
+    <Compile Include="Syncany\View\CloudView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Syncany\View\CloudView.Designer.cs">
+      <DependentUpon>CloudView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Syncany\View\DemoSyncany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Docker\View\DockerManagerView.resx">
       <DependentUpon>DockerManagerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Syncany\View\CloudView.resx">
+      <DependentUpon>CloudView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Syncany\View\DemoSyncany.resx">
       <DependentUpon>DemoSyncany.cs</DependentUpon>

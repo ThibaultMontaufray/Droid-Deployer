@@ -52,6 +52,7 @@ D:\Github\Droid-Deployer\UnitTestProject\bin\Debug\RestSharp.xml
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\UnitTestProject.dll.config
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\UnitTestProject.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\UnitTestProject.pdb
+D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\nunit.framework.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Tools4Libraries.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Newtonsoft.Json.dll
@@ -69,4 +70,3 @@ D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\RestSharp.xml
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.dll
 D:\Github\Droid-Deployer\Project\UnitTestProject\obj\Debug\UnitTestProject.pdb
-D:\Github\Droid-Deployer\Project\UnitTestProject\bin\Debug\Droid_deployer.exe

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace Droid_deployer.Syncany
 {
-    public partial class SyncanyView : Form
+    public partial class SyncanyAdaptaterView : Form
     {
         #region Attributes
         #endregion
@@ -13,7 +13,7 @@ namespace Droid_deployer.Syncany
         #endregion
 
         #region Constructor
-        public SyncanyView()
+        public SyncanyAdaptaterView()
         {
             InitializeComponent();
         }
@@ -28,15 +28,15 @@ namespace Droid_deployer.Syncany
         #region Event
         private void buttonInit_Click(object sender, EventArgs e)
         {
-            SyncanyAdapter.Init();
+            //SyncanyAdapter.Init(textBoxRepoPath.Text, "DemoUser", "DemoPassword");
         }
         private void buttonUp_Click(object sender, EventArgs e)
         {
-            SyncanyAdapter.Up();
+            //SyncanyAdapter.Up();
         }
         private void buttonDown_Click(object sender, EventArgs e)
         {
-            SyncanyAdapter.Down();
+            //SyncanyAdapter.Down();
         }
         private void buttonStart_Click(object sender, EventArgs e)
         {
@@ -44,7 +44,7 @@ namespace Droid_deployer.Syncany
         }
         private void buttonConnect_Click(object sender, EventArgs e)
         {
-            SyncanyAdapter.Connect(textBoxConnect.Text);
+            //SyncanyAdapter.Connect(textBoxConnect.Text);
         }
         private void buttonRestores_Click(object sender, EventArgs e)
         {

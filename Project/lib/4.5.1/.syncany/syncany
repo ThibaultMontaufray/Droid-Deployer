@@ -1,0 +1,10 @@
+<repo>
+   <repoid>bd6778440e9fbac1a1413dd695c850a2940fb9a11342196d2ca0e2e7bf8d0b1a</repoid>
+   <chunker type="fixed">
+      <property name="size">16</property>
+   </chunker>
+   <multichunker type="zip">
+      <property name="size">4096</property>
+   </multichunker>
+   <transformers/>
+</repo>

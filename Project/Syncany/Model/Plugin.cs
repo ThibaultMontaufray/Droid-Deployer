@@ -91,13 +91,13 @@ namespace Droid_deployer
                         try
                         {
                             currentPlugin = new Plugin();
-                            currentPlugin.Id = tab[headers.IndexOf("id")].Replace("\r", string.Empty);
-                            currentPlugin.Name = tab[headers.IndexOf("name")];
-                            currentPlugin.VersionLocal = tab[headers.IndexOf("local version")];
-                            currentPlugin.Type = tab[headers.IndexOf("type")];
+                            currentPlugin.Id = tab[headers.IndexOf("id")].Replace("\r", string.Empty).Trim();
+                            currentPlugin.Name = tab[headers.IndexOf("name")].Trim();
+                            currentPlugin.VersionLocal = tab[headers.IndexOf("local version")].Trim();
+                            currentPlugin.Type = tab[headers.IndexOf("type")].Trim();
                             currentPlugin.VersionRemote = tab[headers.IndexOf("remote version")];
                             currentPlugin.Updatable = !string.IsNullOrEmpty(tab[headers.IndexOf("updatable")].Trim());
-                            currentPlugin.Provider = tab[headers.IndexOf("provided by")];
+                            currentPlugin.Provider = tab[headers.IndexOf("provided by")].Trim();
 
                             plugins.Add(currentPlugin);
                         }

@@ -38,20 +38,95 @@ namespace Droid_deployer
             _intSyn = new Interface_syncany();
 
             comboBoxConnectionType.Items.Clear();
+            comboBoxConnectionAddedRepo.Items.Clear();
             foreach (Plugin plugin in SyncanyAdapter.AvalailablePlugins)
             {
                 comboBoxConnectionType.Items.Add(plugin.Id);
+                comboBoxConnectionAddedRepo.Items.Add(plugin.Id);
             }
-            dataGridView1.DataSource = _intSyn.CloudRepositories;
         }
         private void CreateCloud()
         {
+            _intSyn.CloudConnectionType = comboBoxConnectionType.SelectedItem.ToString().Trim();
             if (!string.IsNullOrEmpty(textBoxConfigPath.Text) && !string.IsNullOrEmpty(textBoxOriginPath.Text) && !string.IsNullOrEmpty(_intSyn.CloudConnectionType))
             {
                 _intSyn.CloudConfigPath = textBoxConfigPath.Text;
                 _intSyn.DirectoryOriginal = textBoxOriginPath.Text;
 
                 _intSyn.GlobalAction("createcloud");
+                RefreshDataDirectories();
+            }
+        }
+        private void AddRepo()
+        {
+            _intSyn.CloudConnectionType = comboBoxConnectionAddedRepo.SelectedItem.ToString().Trim();
+            if (!string.IsNullOrEmpty(textBoxRepoToAssociate.Text) && !string.IsNullOrEmpty(_intSyn.CloudConnectionType))
+            {
+                _intSyn.DirectoryToAssociate = textBoxRepoToAssociate.Text;
+                _intSyn.GlobalAction("associatedirectory");
+                RefreshDataDirectories();
+            }
+        }
+        private void RefreshDataDirectories()
+        {
+            Watch currentWatch;
+            DataGridViewRow row;
+            List<Watch> watchList = Daemon.WatchList;
+
+            dataGridViewRepo.Rows.Clear();
+            foreach (KeyValuePair<string, string> repo in _intSyn.CloudRepositories)
+            {
+                currentWatch = watchList.Where(w => w.Path.Equals(repo.Key)).First();
+
+                dataGridViewRepo.Rows.Add();
+                row = dataGridViewRepo.Rows[dataGridViewRepo.Rows.Count - 1];
+
+                row.Cells[ColumnEnabled.Index].Value = currentWatch != null;
+                row.Cells[ColumnPath.Index].Value = repo.Key;
+                row.Cells[ColumnTypeName.Index].Value = repo.Value;
+
+                switch (repo.Value.ToLower())
+                {
+                    case "azure":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                    case "dropbox":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                    case "flickr":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.flickr;
+                        break;
+                    case "ftp":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.ftp;
+                        break;
+                    case "gui":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                    case "local":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.folder;
+                        break;
+                    case "raid0":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.cd;
+                        break;
+                    case "s3":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                    case "samba":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                    case "sftp":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                    case "swift":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                    case "webdav":
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.drive_web;
+                        break;
+                    default:
+                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                        break;
+                }
             }
         }
         #endregion
@@ -85,17 +160,9 @@ namespace Droid_deployer
                 textBoxRepoToAssociate.Text = fbd.SelectedPath;
             }
         }
-        private void comboBoxConnectionType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _intSyn.CloudConnectionType = comboBoxConnectionType.SelectedItem.ToString().Trim();
-        }
         private void buttonAddRepo_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBoxRepoToAssociate.Text))
-            {
-                _intSyn.DirectoryToAssociate = textBoxRepoToAssociate.Text;
-                _intSyn.GlobalAction("associatedirectory");
-            }
+            AddRepo();
         }
         #endregion
     }

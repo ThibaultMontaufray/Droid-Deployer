@@ -132,6 +132,7 @@
     <Compile Include="Syncany\Model\Daemon.cs" />
     <Compile Include="Syncany\Controler\SyncanyAdapter.cs" />
     <Compile Include="Syncany\Model\Plugin.cs" />
+    <Compile Include="Syncany\Model\Watch.cs" />
     <Compile Include="Syncany\View\DemoSyncany.cs">
       <SubType>Form</SubType>
     </Compile>

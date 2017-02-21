@@ -32,11 +32,11 @@ namespace Droid_deployer.Syncany
         }
         private void buttonUp_Click(object sender, EventArgs e)
         {
-            SyncanyAdapter.Up();
+            //SyncanyAdapter.Up();
         }
         private void buttonDown_Click(object sender, EventArgs e)
         {
-            SyncanyAdapter.Down();
+            //SyncanyAdapter.Down();
         }
         private void buttonStart_Click(object sender, EventArgs e)
         {

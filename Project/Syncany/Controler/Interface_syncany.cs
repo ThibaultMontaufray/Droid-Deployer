@@ -6,7 +6,7 @@ namespace Droid_deployer
     {
         #region Attribute
         private string _cloudConfigPath;
-        private List<string> _cloudRepositories;
+        private List<KeyValuePair<string, string>> _cloudRepositories; // path, type of connection
         private string _directoryOriginal;
         private string _directoryToAssociate;
         private string _workingDirectory;
@@ -16,13 +16,15 @@ namespace Droid_deployer
         private string _cloudConnectionType;
         #endregion
 
+        // TODO : control daemon and the watch list
+
         #region Properties
         public string CloudConnectionType
         {
             get { return _cloudConnectionType; }
             set { _cloudConnectionType = value; }
         }
-        public List<string> CloudRepositories
+        public List<KeyValuePair<string, string>> CloudRepositories
         {
             get { return _cloudRepositories; }
             set { _cloudRepositories = value; }
@@ -62,7 +64,7 @@ namespace Droid_deployer
         #region Constructor
         public Interface_syncany()
         {
-            _cloudRepositories = new List<string>();
+            _cloudRepositories = new List<KeyValuePair<string, string>>();
         }
         #endregion
 
@@ -97,15 +99,16 @@ namespace Droid_deployer
             { 
                 SyncanyAdapter.PluginInstall("sftp");
                 SyncanyAdapter.Init(_cloudConfigPath, _directoryOriginal, _login, _password, _cloudConnectionType);
+                _cloudRepositories.Add(new KeyValuePair<string, string>(_directoryOriginal, _cloudConnectionType));
                 Daemon.AddWatch(_directoryOriginal);
             }
         }
         private void LaunchAssociateDirectory()
         {
-            if (!string.IsNullOrEmpty(_directoryToAssociate) && !string.IsNullOrEmpty(_cloudConfigPath) && !string.IsNullOrEmpty(_cloudConnectionType) && !_cloudRepositories.Contains(_directoryToAssociate))
+            if (!string.IsNullOrEmpty(_directoryToAssociate) && !string.IsNullOrEmpty(_cloudConfigPath) && !string.IsNullOrEmpty(_cloudConnectionType) && !_cloudRepositories.Contains(new KeyValuePair<string, string> (_directoryToAssociate, _cloudConnectionType)))
             {
                 SyncanyAdapter.Connect(_cloudConfigPath, _directoryToAssociate, _cloudConnectionType);
-                _cloudRepositories.Add(_directoryToAssociate);
+                _cloudRepositories.Add(new KeyValuePair<string, string>(_directoryToAssociate, _cloudConnectionType));
                 Daemon.AddWatch(_directoryToAssociate);
             }
         }

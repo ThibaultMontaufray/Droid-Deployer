@@ -102,8 +102,8 @@ namespace Droid_deployer
                     {
                         currentWatch = new Watch();
                         currentWatch.Id = tab[headers.IndexOf("#")].Replace("\r", string.Empty).Trim();
-                        currentWatch.Path = tab[headers.IndexOf("Path")].Trim();
-                        currentWatch.Enabled = tab[headers.IndexOf("Enabled")].Trim().Equals("yes");
+                        currentWatch.Path = tab[headers.IndexOf("path")].Trim();
+                        currentWatch.Enabled = tab[headers.IndexOf("enabled")].Trim().Equals("yes");
                         watchList.Add(currentWatch);
                     }
                 }

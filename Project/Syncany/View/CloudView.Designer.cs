@@ -28,7 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBoxCreation = new System.Windows.Forms.GroupBox();
+            this.buttonAddRepo = new System.Windows.Forms.Button();
+            this.dataGridViewRepo = new System.Windows.Forms.DataGridView();
+            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.comboBoxConnectionAddedRepo = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.buttonBrowseNewRepo = new System.Windows.Forms.Button();
@@ -41,18 +49,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.buttonBrowseOriginPath = new System.Windows.Forms.Button();
             this.textBoxOriginPath = new System.Windows.Forms.TextBox();
-            this.dataGridViewRepo = new System.Windows.Forms.DataGridView();
-            this.ColumnIcon = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ColumnId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPath = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnTypeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnEnabled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBoxCreation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRepo)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxCreation
             // 
+            this.groupBoxCreation.Controls.Add(this.buttonAddRepo);
             this.groupBoxCreation.Controls.Add(this.dataGridViewRepo);
             this.groupBoxCreation.Controls.Add(this.comboBoxConnectionAddedRepo);
             this.groupBoxCreation.Controls.Add(this.label2);
@@ -74,6 +77,84 @@
             this.groupBoxCreation.TabIndex = 15;
             this.groupBoxCreation.TabStop = false;
             this.groupBoxCreation.Text = "Cloud";
+            // 
+            // buttonAddRepo
+            // 
+            this.buttonAddRepo.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonAddRepo.ForeColor = System.Drawing.Color.Black;
+            this.buttonAddRepo.Location = new System.Drawing.Point(608, 83);
+            this.buttonAddRepo.Name = "buttonAddRepo";
+            this.buttonAddRepo.Size = new System.Drawing.Size(94, 27);
+            this.buttonAddRepo.TabIndex = 14;
+            this.buttonAddRepo.Text = "Add repo";
+            this.buttonAddRepo.UseVisualStyleBackColor = true;
+            this.buttonAddRepo.Click += new System.EventHandler(this.buttonAddRepo_Click);
+            // 
+            // dataGridViewRepo
+            // 
+            this.dataGridViewRepo.AllowUserToAddRows = false;
+            this.dataGridViewRepo.AllowUserToDeleteRows = false;
+            this.dataGridViewRepo.AllowUserToResizeColumns = false;
+            this.dataGridViewRepo.AllowUserToResizeRows = false;
+            this.dataGridViewRepo.BackgroundColor = System.Drawing.Color.DimGray;
+            this.dataGridViewRepo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.dataGridViewRepo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewRepo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnIcon,
+            this.ColumnId,
+            this.ColumnPath,
+            this.ColumnTypeName,
+            this.ColumnEnabled});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewRepo.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewRepo.Location = new System.Drawing.Point(10, 117);
+            this.dataGridViewRepo.Name = "dataGridViewRepo";
+            this.dataGridViewRepo.RowHeadersVisible = false;
+            this.dataGridViewRepo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewRepo.Size = new System.Drawing.Size(692, 201);
+            this.dataGridViewRepo.TabIndex = 13;
+            // 
+            // ColumnIcon
+            // 
+            this.ColumnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
+            this.ColumnIcon.HeaderText = "";
+            this.ColumnIcon.Name = "ColumnIcon";
+            this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnIcon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ColumnIcon.Width = 5;
+            // 
+            // ColumnId
+            // 
+            this.ColumnId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnId.HeaderText = "Id";
+            this.ColumnId.Name = "ColumnId";
+            this.ColumnId.Width = 47;
+            // 
+            // ColumnPath
+            // 
+            this.ColumnPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColumnPath.HeaderText = "Path";
+            this.ColumnPath.Name = "ColumnPath";
+            // 
+            // ColumnTypeName
+            // 
+            this.ColumnTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnTypeName.HeaderText = "Type";
+            this.ColumnTypeName.Name = "ColumnTypeName";
+            this.ColumnTypeName.Width = 67;
+            // 
+            // ColumnEnabled
+            // 
+            this.ColumnEnabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.ColumnEnabled.HeaderText = "Synchronised";
+            this.ColumnEnabled.Name = "ColumnEnabled";
+            this.ColumnEnabled.Width = 107;
             // 
             // comboBoxConnectionAddedRepo
             // 
@@ -135,9 +216,9 @@
             this.buttonUpdate.ForeColor = System.Drawing.Color.Black;
             this.buttonUpdate.Location = new System.Drawing.Point(608, 26);
             this.buttonUpdate.Name = "buttonUpdate";
-            this.buttonUpdate.Size = new System.Drawing.Size(94, 85);
+            this.buttonUpdate.Size = new System.Drawing.Size(94, 56);
             this.buttonUpdate.TabIndex = 8;
-            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.Text = "Create cloud";
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonCreateCloud_Click);
             // 
@@ -205,63 +286,6 @@
             this.textBoxOriginPath.Size = new System.Drawing.Size(209, 27);
             this.textBoxOriginPath.TabIndex = 4;
             // 
-            // dataGridViewRepo
-            // 
-            this.dataGridViewRepo.AllowUserToAddRows = false;
-            this.dataGridViewRepo.AllowUserToDeleteRows = false;
-            this.dataGridViewRepo.AllowUserToResizeColumns = false;
-            this.dataGridViewRepo.AllowUserToResizeRows = false;
-            this.dataGridViewRepo.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
-            this.dataGridViewRepo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRepo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColumnIcon,
-            this.ColumnId,
-            this.ColumnPath,
-            this.ColumnTypeName,
-            this.ColumnEnabled});
-            this.dataGridViewRepo.Location = new System.Drawing.Point(10, 117);
-            this.dataGridViewRepo.Name = "dataGridViewRepo";
-            this.dataGridViewRepo.RowHeadersVisible = false;
-            this.dataGridViewRepo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewRepo.Size = new System.Drawing.Size(692, 201);
-            this.dataGridViewRepo.TabIndex = 13;
-            // 
-            // ColumnIcon
-            // 
-            this.ColumnIcon.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
-            this.ColumnIcon.HeaderText = "";
-            this.ColumnIcon.Name = "ColumnIcon";
-            this.ColumnIcon.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnIcon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ColumnIcon.Width = 5;
-            // 
-            // ColumnId
-            // 
-            this.ColumnId.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnId.HeaderText = "Id";
-            this.ColumnId.Name = "ColumnId";
-            this.ColumnId.Width = 47;
-            // 
-            // ColumnPath
-            // 
-            this.ColumnPath.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColumnPath.HeaderText = "Path";
-            this.ColumnPath.Name = "ColumnPath";
-            // 
-            // ColumnTypeName
-            // 
-            this.ColumnTypeName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnTypeName.HeaderText = "Type";
-            this.ColumnTypeName.Name = "ColumnTypeName";
-            this.ColumnTypeName.Width = 67;
-            // 
-            // ColumnEnabled
-            // 
-            this.ColumnEnabled.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.ColumnEnabled.HeaderText = "Synchronised";
-            this.ColumnEnabled.Name = "ColumnEnabled";
-            this.ColumnEnabled.Width = 107;
-            // 
             // CloudView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -298,5 +322,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPath;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnTypeName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnEnabled;
+        private System.Windows.Forms.Button buttonAddRepo;
     }
 }

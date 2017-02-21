@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6827572C-022E-4C94-8E6C-4F4FC7AEAB18}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Droid_deployer</RootNamespace>
     <AssemblyName>Droid_deployer</AssemblyName>
@@ -71,6 +71,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Syncany\View\CloudStatus.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Syncany\View\CloudStatus.Designer.cs">
+      <DependentUpon>CloudStatus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Docker\Controler\Command.cs" />
     <Compile Include="Docker\Model\Authentication.cs" />
     <Compile Include="Docker\Model\Boot2Docker.cs" />
@@ -163,6 +169,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Syncany\View\CloudStatus.resx">
+      <DependentUpon>CloudStatus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GitHub\Controler\CreateGitHubIssue.resx">
       <DependentUpon>CreateGitHubIssue.cs</DependentUpon>
     </EmbeddedResource>

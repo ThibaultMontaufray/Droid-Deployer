@@ -13,6 +13,15 @@ namespace Droid_deployer
         #endregion
 
         #region Properties
+        public Interface_syncany InterficeSyncany
+        {
+            get { return _intSyn; }
+            set
+            {
+                _intSyn = value;
+                RefreshData();
+            }
+        }
         #endregion
 
         #region Constructor
@@ -31,6 +40,15 @@ namespace Droid_deployer
         #endregion
 
         #region Methods public
+        public void RefreshData()
+        {
+            textBoxConfigPath.Text = _intSyn.CloudConfigPath;
+            textBoxOriginPath.Text = _intSyn.DirectoryOriginal;
+            textBoxRepoToAssociate.Text = _intSyn.DirectoryToAssociate;
+            comboBoxConnectionAddedRepo.Text = _intSyn.CloudConnectionType;
+            comboBoxConnectionType.Text = _intSyn.CloudConnectionType;
+            RefreshDataDirectories();
+        }
         #endregion
 
         #region Methods private
@@ -78,56 +96,60 @@ namespace Droid_deployer
             dataGridViewRepo.Rows.Clear();
             foreach (KeyValuePair<string, string> repo in _intSyn.CloudRepositories)
             {
-                currentWatch = watchList.Where(w => w.Path.Equals(repo.Key)).First();
-
-                dataGridViewRepo.Rows.Add();
-                row = dataGridViewRepo.Rows[dataGridViewRepo.Rows.Count - 1];
-
-                row.Cells[ColumnEnabled.Index].Value = currentWatch != null;
-                row.Cells[ColumnPath.Index].Value = repo.Key;
-                row.Cells[ColumnTypeName.Index].Value = repo.Value;
-
-                switch (repo.Value.ToLower())
+                List<Watch> watchListTmp = watchList.Where(w => w.Path.Equals(repo.Key)).ToList();
+                if (watchListTmp.Count > 0)
                 {
-                    case "azure":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
-                    case "dropbox":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
-                    case "flickr":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.flickr;
-                        break;
-                    case "ftp":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.ftp;
-                        break;
-                    case "gui":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
-                    case "local":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.folder;
-                        break;
-                    case "raid0":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.cd;
-                        break;
-                    case "s3":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
-                    case "samba":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
-                    case "sftp":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
-                    case "swift":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
-                    case "webdav":
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.drive_web;
-                        break;
-                    default:
-                        row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
-                        break;
+                    currentWatch = watchListTmp[0];
+
+                    dataGridViewRepo.Rows.Add();
+                    row = dataGridViewRepo.Rows[dataGridViewRepo.Rows.Count - 1];
+
+                    row.Cells[ColumnEnabled.Index].Value = currentWatch != null;
+                    row.Cells[ColumnPath.Index].Value = repo.Key;
+                    row.Cells[ColumnTypeName.Index].Value = repo.Value;
+
+                    switch (repo.Value.ToLower())
+                    {
+                        case "azure":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                        case "dropbox":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                        case "flickr":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.flickr;
+                            break;
+                        case "ftp":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.ftp;
+                            break;
+                        case "gui":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                        case "local":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.folder;
+                            break;
+                        case "raid0":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.cd;
+                            break;
+                        case "s3":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                        case "samba":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                        case "sftp":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                        case "swift":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                        case "webdav":
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.drive_web;
+                            break;
+                        default:
+                            row.Cells[ColumnIcon.Index].Value = Tools4Libraries.Resources.ResourceIconSet16Default.network;
+                            break;
+                    }
                 }
             }
         }

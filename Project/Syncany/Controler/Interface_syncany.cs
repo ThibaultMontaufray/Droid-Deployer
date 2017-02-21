@@ -64,6 +64,8 @@ namespace Droid_deployer
         #region Constructor
         public Interface_syncany()
         {
+            _login = "demoLog";
+            _password = "demoPwd";
             _cloudRepositories = new List<KeyValuePair<string, string>>();
         }
         #endregion
